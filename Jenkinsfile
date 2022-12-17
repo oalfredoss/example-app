@@ -5,15 +5,15 @@ node {
 		checkout scm
 	}
 	stage('Build image'){
-		app = docker.build('oalfredoss/example-app');
+		app = docker.build('513135192262.dkr.ecr.us-east-1.amazonaws.com/oalfredoss/example-app');
 	}
 	stage('Test'){
 		app.inside {
-			sh 'npm test'
+			sh 'node -v'
 		}
 	}
 	stage('Push image'){
-		docker.withRegistry('https://registry.hub.docker.com','docker-hub-credentials'){
+		docker.withRegistry('https://513135192262.dkr.ecr.us-east-1.amazonaws.com','ecr:us-east-1:aws-credentials'){
 			app.push("${env.BRANCH_NAME}-${env.BUILD_NUMBER}")
 		}
 	}
