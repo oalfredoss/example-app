@@ -1,8 +1,6 @@
-var assert = require('assert')
+import test from 'test';
 
-function test() {
-  assert.equal(2 + 2, 4);
-}
+test('synchronous passing test',(t)=>{
+	assert.strictEqual(1, 1);
 
-if (module == require.main) require('test').run(test);
-
+});
